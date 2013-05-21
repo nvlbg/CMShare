@@ -1,0 +1,73 @@
+/*History.pushState(null, data.title, null);
+            var template, tmpl_data, options = {},
+                callback = false,
+                content = $('#content');
+
+
+            switch(data.main_content)
+            {
+                case 'home_view.php':
+                    template = $('#articlesTemplate');
+                    tmpl_data = data.content.articles.articles;
+                    options = {
+                        PATH : path,
+                        read : data.content.read,
+                        tags : data.content.tags
+                    };
+                    callback = function() {
+                        console.log( data.content );
+                        data.content.articles.pages = [];
+                        for(var i = (data.content.articles.page - data.content.articles.range), j = 0; i < (data.content.articles.page + data.content.articles.range + 1); i++)
+                        {
+                            data.content.articles.pages[j] = i;
+                            j++;
+                        }
+                        console.log(data.content.articles.pages);
+                        $('#paginationTemplate').tmpl(data.content.articles).appendTo( content );
+                    };
+                    break;
+                case 'category_view.php':
+                    callback = function() {
+                        $('#categoryTemplate').tmpl(data.content.articles).prependTo( content );
+                    };
+                    template = $('#articlesTemplate');
+                    tmpl_data = data.content.articles.articles;
+                    options = {
+                        PATH : path,
+                        read: data.content.read,
+                        tags: data.content.tags_m
+                    };
+                    break;
+                case 'tag_view.php':
+                    callback = function() {
+                        $('#tagTemplate').tmpl(data.content.articles).prependTo( content );
+                    };
+                    template = $('#articlesTemplate');
+                    tmpl_data = data.content.articles.articles;
+                    options = {
+                        PATH : path,
+                        read: data.content.read,
+                        tags: data.content.tags_m
+                    };
+                    break;
+                case 'contact_view.php':
+                    template = $('#contactTemplate');
+                    tmpl_data = data.content;
+                    options = {
+                        PATH : path
+                    };
+                    break;
+                case 'register_view.php':
+                    template = $('#registerTemplate');
+                    tmpl_data = data.content;
+                    options = {
+                        PATH : path
+                    };
+                    break;
+            }*/
+
+            // render the template
+            //template.tmpl(tmpl_data, options).appendTo( content.empty() );
+
+            // call the callback function if it is a function
+            //callback !== false && callback();

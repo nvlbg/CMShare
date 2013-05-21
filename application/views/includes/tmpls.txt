@@ -1,0 +1,166 @@
+
+        <!-- jQuery tmpl scripts from here to bottom -->
+        <script id="articlesTemplate" type="text/x-jquery-tmpl">
+            <article class="post">
+                <header>
+                    <img class="authorAvatar" src="${author_avatar}" alt="${username}" width="44" height="44" />
+                    <h3><a href="${$item.PATH}article/${article_id}" title="${title}">${title}</a></h3>
+                    <div class="article-meta">
+                        <ul>
+                            <li class="article-date">${date_added}</li>
+                            <li class="article-author"><a href="${$item.PATH}user/${author_id}" title="${username}">${username}</a></li>
+                            <li class="article-category"><a href="${$item.PATH}category/${category_id}" title="${category_name}">${category_name}</a></li>
+                            <li class="article-seen">${seen}</li>
+                            <li class="article-comments"><a href="${$item.PATH}article/${article_id}" title="${title}">${comments_count}</a></li>
+                        </ul>
+                    </div>
+
+                </header>
+                <section>
+                    <p>${article}...  <a href="${$item.PATH}article/${article_id}" title="${title}"> ${$item.read} </a></p>
+                </section>
+                <footer>
+                    <div class="tags">
+                        <span>${$item.tags}</span>
+                        <ul>
+                            {{each tags}}
+                            <li><a href="${$item.PATH}/tag/${$index}/" title="${$value}">${$value}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </footer>
+            </article>
+        </script>
+        <script id="contactTemplate" type="text/x-jquery-tmpl">
+            <form method="POST" action="${$item.PATH}contact/send/" id="contactForm" class="form">
+                <p>
+                    <label for="c-name">${labels.name}<span class="required">*</span>: </label>
+                    <input type="text" name="c-name" value="" id="c-name">
+                </p>
+                <p>
+                    <label for="c-email">${labels.email}<span class="required">*</span>: </label>
+                    <input type="text" name="c-email" value="" id="c-email">
+                </p>
+                <p>
+                    <label for="c-title">${labels.title}<span class="required">*</span>: </label>
+                    <input type="text" name="c-title" value="" id="c-title">
+                </p>
+                <p>
+                    <label for="c-message">${labels.message}<span class="required">*</span>: </label>
+                    <textarea name="c-message" id="c-message"></textarea>
+                </p>
+                <p>
+                    <input type="submit" value="Send">
+                </p>
+            </form>
+        </script>
+        <script id="tagTemplate" type="text/x-jquery-tmpl">
+            <h2 class="h2heading">Tag - ${tag_name}</h2>
+        </script>
+        <script id="categoryTemplate" type="text/x-jquery-tmpl">
+            <h2 class="h2heading">Category - ${category_name}</h2>
+        </script>
+        <script id="paginationTemplate" type="text/x-jquery-tmpl">
+            {{if total > 1}}
+            <div id="pagination">
+                {{if page > 1}}
+                    <a href="${$item.PATH}home/1/">&laquo;</a>
+                    <a href="${$item.path}home/${page - 1}/"><</a>
+                {{/if}}
+                
+                {{each(i, x) pages}}
+                    {{if x > 0 && x <= total}}
+                        {{if x == page}}
+                            <span>${x}</span>
+                        {{else}}
+                            <a href="${$item.PATH}home/${x}/">${x}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/each}}
+                
+                {{if page !== total}}
+                    <a href="${$item.PATH}home/${page + 1}/">></a>
+                    <a href="${$item.PATH}home/${articles.total}">&raquo;</a>
+                {{/if}}
+            </div>
+            {{/if}}
+        <!--<?php if($articles['total'] > 1) { ?>
+        <div id="pagination">
+            <?php
+            if($articles['page'] > 1)
+            {
+               $prevpage = $articles['page'] - 1;
+               echo ' <a href="' . PATH . 'home/1/">&laquo;</a> ';
+               echo ' <a href="' . PATH . 'home/' . $prevpage . '/"><</a> ';
+            }
+
+            for($x = ($articles['page'] - $articles['range']); $x < (($articles['page'] + $articles['range'])  + 1); $x++)
+            {
+               if(($x > 0) && $x <= $articles['total'])
+               {
+                  if($x == $articles['page'])
+                  {
+                     echo ' <span>' . $x . '</span> ';
+                  }
+                  else
+                  {
+                     echo ' <a href="' . PATH . 'home/' . $x . '/">' . $x . '</a> ';
+                  }
+               }
+            }
+
+            if($articles['page'] != $articles['total'])
+            {
+               $nextpage = $articles['page'] + 1;
+               echo ' <a href="' . PATH . 'home/' . $nextpage . '/">></a> ';
+               echo ' <a href="' . PATH . 'home/' . $articles['total'] . '/">&raquo;</a> ';
+            }
+            ?>
+        </div>
+        <?php } ?>-->
+        </script>
+        <script id="registerTemplate" type="text/x-jquery-tmpl">
+        
+            <form method="POST" action="${$item.PATH}register/register" id="registerForm" class="form">
+                <p>
+                    <label for="r-username">${labels.username}<span class="required">*</span>: </label>
+                    <input type="text" value="" name="r-username" id="r-username" class="registerField">
+                </p>
+                <p>
+                    <label for="r-password">${labels.password}<span class="required">*</span>: </label>
+                    <input type="password" value="" name="r-password" id="r-password" class="registerField">
+                </p>
+                <p>
+                    <label for="re-password">${labels['re-pass']}<span class="required">*</span>: </label>
+                    <input type="password" value="" name="re-password" id="re-password" class="registerField">
+                </p>
+                <p>
+                    <label for="email">${labels.email}<span class="required">*</span>: </label>
+                    <input type="text" value="" name="email" id="email" class="registerField">
+                </p>
+                <p>
+                    <label for="re-email">${labels['re-email']}<span class="required">*</span>: </label>
+                    <input type="text" value="" name="re-email" id="re-email" class="registerField">
+                </p>
+                <p>
+                    <label for="first-name">${labels['first-name']}: </label>
+                    <input type="text" value="" name="first-name" id="first-name" class="registerField">
+                </p>
+                <p>
+                    <label for="last-name">${labels['last-name']}: </label>
+                    <input type="text" value="" name="last-name" id="last-name" class="registerField">
+                </p>
+                <p style="margin-left:20px;">
+                    <span style="display:inline-block;width:200px;margin-left:-20px;">${labels.sex}<span class="required">*</span>: </span>
+                    <input type="radio" name="sex" value="m" id="male" checked="checked"><label style="width:70px;" for="male">${labels.male}</label>
+                    <input type="radio" name="sex" value="f" id="female" ><label style="width:auto;" for="female">${labels.female}</label>
+                </p>
+                <p>
+                    <label for="description">${labels.desc}: </label>
+                    <textarea name="description" id="description"></textarea>
+                </p>
+                <p>
+                    <input type="submit" value="Register">
+                </p>
+            </form>
+        </script>
